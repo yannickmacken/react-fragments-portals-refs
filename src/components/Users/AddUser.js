@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
 
-import Card from '../UI/Card';
 import Button from '../UI/Button';
 import ErrorModal from '../UI/ErrorModal';
 import classes from './AddUser.module.css';
+import Rating from  '@mui/material/Rating';
+import Card from '@mui/material/Card';
 
 const AddUser = (props) => {
 
@@ -68,9 +69,11 @@ const AddUser = (props) => {
             type="number"
             ref = {ageInputRef}
           />
+          <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
           <Button type="submit">Add User</Button>
         </form>
       </Card>
+      
     </div>
   );
 };
