@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import DefaultCard from './Card';
+import Card from './Card';
 import Button from './Button';
 import classes from './ErrorModal.module.css';
 
@@ -11,7 +11,7 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
   return(
-    <DefaultCard className={classes.modal}>
+    <Card className={classes.modal}>
       <header className={classes.header}>
         <h2>{props.title}</h2>
       </header>
@@ -21,7 +21,7 @@ const ModalOverlay = (props) => {
       <footer className={classes.actions}>
         <Button onClick={props.onConfirm}>Okay</Button>
       </footer>
-    </DefaultCard>
+    </Card>
   )
 };
 
