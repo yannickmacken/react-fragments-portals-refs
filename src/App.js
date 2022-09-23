@@ -29,8 +29,7 @@ function App() {
     });
   };
 
-  // React fragment disguised as empty div
-  return (
+  const mainElement = (
     <>
       <Stack>
         <Item> <AddUser onAddUser={addUserHandler} /> </Item>
@@ -38,7 +37,10 @@ function App() {
         <Item> <ExampleCard/> </Item>
       </Stack>
     </>
-  );
+  )
+
+  // React fragment disguised as empty div
+  return mainElement;
 }
 
 export default App;

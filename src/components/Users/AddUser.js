@@ -1,10 +1,24 @@
 import React, { useState, useRef } from 'react';
 
 import Button from '../UI/Button';
-import ErrorModal from '../UI/ErrorModal';
+import Modal from '@mui/material/Modal';
 import classes from './AddUser.module.css';
 import Rating from  '@mui/material/Rating';
 import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 const AddUser = (props) => {
 
@@ -14,7 +28,7 @@ const AddUser = (props) => {
   const nameInputRef = useRef();
   const ageInputRef = useRef();
 
-  const [error, setError] = useState();
+  const [error, setError] = useState(false);
 
   const addUserHandler = (event) => {
     event.preventDefault();
@@ -43,18 +57,24 @@ const AddUser = (props) => {
   };
 
   const errorHandler = () => {
-    setError(null);
+    setError(false);
   };
 
   return (
     <div>
-      {error && (
-        <ErrorModal
-          title={error.title}
-          message={error.message}
-          onConfirm={errorHandler}
-        />
-      )}
+      <Modal
+      open={Boolean(error)}
+      onClose={errorHandler}
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {error.title}
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            {error.message}
+          </Typography>
+        </Box>
+      </Modal>
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">Username</label>
