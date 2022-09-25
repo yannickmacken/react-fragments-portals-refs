@@ -7,6 +7,8 @@ import Stack from '@mui/material/Stack';
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import modeContext from './store/modeContext';
+import Button from './components/UI/Button';
 
 function App() {
 
@@ -19,6 +21,7 @@ function App() {
   }));
 
   const [usersList, setUsersList] = useState([]);
+  const [mode, setMode] = useState("light")
 
   const addUserHandler = (uName, uAge) => {
     setUsersList((prevUsersList) => {
@@ -29,14 +32,21 @@ function App() {
     });
   };
 
+  function onToggleMode() {
+    mode === "light" ? setMode("dark") : setMode("light")
+  }
+
   const mainElement = (
-    <>
+    <modeContext.Provider value={mode}>
       <Stack>
         <Item> <AddUser onAddUser={addUserHandler} /> </Item>
         <Item> <UsersList users={usersList} /> </Item>
+        <Item>
+        <Button onClick={onToggleMode} size="small">Toggle to Dark Mode</Button>
+        </Item>
         <Item> <ExampleCard/> </Item>
       </Stack>
-    </>
+    </modeContext.Provider>
   )
 
   // React fragment disguised as empty div

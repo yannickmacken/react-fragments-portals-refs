@@ -19,7 +19,7 @@ const UsersList = (props) => {
           </li>
         ))}
       </ul>
-      <h2>{String(ctx.isDarkMode)}</h2>
+      <h2>{String(ctx)}</h2>
     </Card>
   );
 };
